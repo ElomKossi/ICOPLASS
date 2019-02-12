@@ -1,0 +1,62 @@
+﻿@using ApplicationMVC.Models
+@model ApplicationMVC.Models.UserViewModel
+@{
+    Layout = null;
+}
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Page de garde</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="center-block">
+                    <div align="center">
+                        @using (Html.BeginForm("Login", "Connect", FormMethod.Post, new { @class = "form-signin" }))
+                        {
+                            <div class="form-group">
+                                <label class="sr-only">Identifiant</label>
+                                <input autocomplete="off" class="form-control" type="email" id="mail" name="mail" placeholder="Email" required="required" autofocus="autofocus" />
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="">Mot de Passe</label>
+                                <input id="motdepasse" autocomplete="off" name="motdepasse" class="form-control" placeholder="Mot de Passe" type="password" required="required" />
+                            </div>
+                            if (ViewBag.erreur != null)
+                            {
+                                <div class="alert-danger alert-dismissable">
+
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <span class="alerts-text">@ViewBag.erreur</span>
+                                </div>
+                            }
+                            <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-ok-circle"></span>Valider</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navbar navbar-default navbar-fixed-bottom">
+            <footer class="text-center">&copy;@DateTime.Now.Year -<span class=" glyphicon glyphicon-link"></span>NSIA Assurances Togo</footer>
+        </div>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+
+</html>
+
+
+

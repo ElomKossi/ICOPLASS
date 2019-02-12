@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="041c27e9c0f74a9da7446ba8e9e1e91e" Name="Diagram1">
+        <EntityTypeShape EntityType="AssBdModel.Adherent" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssBdModel.Affilie" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssBdModel.CompteUtilisateur" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssBdModel.Connexion" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssBdModel.Facture" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssBdModel.Ligne_PolicePlafond" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssBdModel.Plafond" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssBdModel.Police" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssBdModel.Prestataire" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssBdModel.Profil" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AssBdModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="9.25" IsExpanded="true" />
+        <AssociationConnector Association="AssBdModel.FK_Adherent_Police" ManuallyRouted="false" />
+        <AssociationConnector Association="AssBdModel.FK_Affilie_Adherent" ManuallyRouted="false" />
+        <AssociationConnector Association="AssBdModel.FK_Facture_Adherent" ManuallyRouted="false" />
+        <AssociationConnector Association="AssBdModel.FK_Facture_Affilie" ManuallyRouted="false" />
+        <AssociationConnector Association="AssBdModel.FK_CompteUtilisateur_Profil" ManuallyRouted="false" />
+        <AssociationConnector Association="AssBdModel.FK_Connexion_CompteUtilisateur" ManuallyRouted="false" />
+        <AssociationConnector Association="AssBdModel.FK_Facture_Plafond" ManuallyRouted="false" />
+        <AssociationConnector Association="AssBdModel.FK_Facture_Police" ManuallyRouted="false" />
+        <AssociationConnector Association="AssBdModel.FK_Facture_Prestataire" ManuallyRouted="false" />
+        <AssociationConnector Association="AssBdModel.FK_Ligne_PolicePlafond_Plafond" ManuallyRouted="false" />
+        <AssociationConnector Association="AssBdModel.FK_Ligne_PolicePlafond_Police" ManuallyRouted="false" />
+        <AssociationConnector Association="AssBdModel.FK_Prestataire_Plafond" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

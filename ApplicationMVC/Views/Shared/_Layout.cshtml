@@ -1,0 +1,117 @@
+﻿@using System.Diagnostics
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using DAL
+@{
+    ViewBag.Title = "Santé Plus " + ViewBag.Title;
+    AssBdEntities db = new AssBdEntities();
+    CompteUtilisateur courant = db.CompteUtilisateur.ToList().Find(p => p.NomUtilisateur == HttpContext.Current.User.Identity.Name);
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @*<style>
+        .btn-lg {
+            width: 300px;
+            height: 300px;
+            border-radius: 150px;
+        }
+    </style>*@
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*<a class="navbar-brand" href="#"><span>Lumino</span>Admin</a>*@
+                <a class="navbar-brand" href="/Home" style="color : lightskyblue; font-family: Impact, 'Cooper Black', Arial, Verdana, sans-serif; font-size : xx-large">ICoPlAss</a>
+                <ul class="user-menu">
+                    <li class="dropdown pull-right">
+                    @{
+                        if (Request.Cookies["userName"] != null)
+                        {
+                            HttpCookie aCookie = Request.Cookies["userName"];
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <svg class="glyph stroked male-user">
+                                    <use xlink:href="#stroked-male-user"></use>
+                                </svg> @Server.HtmlEncode(aCookie.Value) <span class="caret"></span>
+                            </a>
+                        }
+                    }
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="~/User/Index"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Paramètre</a></li>
+                        <li><a href="~/Login/Deconnexion"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Déconnexion</a></li>
+                    </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+        <form role="search">
+            <div class="form-group">
+                <img src="~/Content/logo.png" class="img-responsive img-rounded" alt="Logo NSIA Assurances" />
+            </div>
+        </form>
+        <ul class="nav menu">
+            <li><a href="~/Prestataire/Facturation/Index">Gestion des assurés</a></li>
+            <li><a href="~/Listes/Listes/Index">Les Listes</a></li>
+            <li><a href="~/Administration/Index/Index">Administration</a></li>
+            <li role="presentation" class="divider"></li>
+            <li><a href="~/Home/Contact">Contact</a></li>
+            <li><a href="~/Home/About">À propos</a></li>
+        </ul>
+
+    </div><!--/.sidebar-->
+
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+            @RenderBody()
+                <footer class="text-center">&copy;@DateTime.Now.Year -<span class=" glyphicon glyphicon-link"></span>NSIA Togo Assurances</footer>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content col-lg-12">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Authentifier un client</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/Prestataire/Facturation/ValiderClient" class="form-horizontal" method="post">
+                            <div class="form-group">
+                                <label for="total" class="col-sm-4 control-label">Code de l'assurée : </label>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" id="CodeSecret" name="CodeSecret" placeholder="Code Secret" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-1 col-sm-10">
+                                    <input type="submit" value="Valider" class="btn btn-info btn-block col-sm-6 col-sm-offset-3" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/gridmvc")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+</body>
+</html>

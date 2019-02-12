@@ -1,0 +1,59 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using DAL
+@model dynamic
+
+@{
+    ViewBag.Title = "Modifier le Mot de Passe";
+    AssBdEntities bd = new AssBdEntities();
+    HttpCookie aCookie = Request.Cookies["userName"];
+    CompteUtilisateur courant = bd.CompteUtilisateur.ToList().Find(p => p.NomUtilisateur == Server.HtmlEncode(aCookie.Value)); ViewBag.Title = "Profil " + Server.HtmlEncode(aCookie.Value);
+    Profil pi = bd.Profil.Single(j => j.CodeProfil == courant.CodeProfil);
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+
+        }
+        <div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h1 class="panel-title">
+                        <i class="fa fa-3x fa-plus"></i><span class="h3 text-center">Securité || Modifier le Mot de Passe</span>
+                    </h1>
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("Motdepasse", "User", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        <div class="form-group">
+                            <label for="text" class="col-xs-4 control-label">Identifiant:</label>
+                            <div class="col-xs-8">
+                                <input class="form-control sui-accordion-disabled" id="idnvo" value="@courant.NomUtilisateur">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="text" class="col-xs-4 control-label">Mot de Passe Actuel:</label>
+                            <div class="col-xs-8">
+                                <input autocomplete="off" autofocus type="password" class="form-control" placeholder="Mot de Passe Actuel" name="motdepasse" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="text" class="col-xs-4 control-label">Nouveau Mot de Passe:</label>
+                            <div class="col-xs-8">
+                                <input autocomplete="off" type="password" class="form-control" placeholder="Nouveau Mot de Passe" name="motdepasse1" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="text" class="col-xs-4 control-label">Confirmer :</label>
+                            <div class="col-xs-8">
+                                <input autocomplete="off" type="password" class="form-control" placeholder="Confirmer" name="confirmer" required>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6"></div>
+                        <div class="btn-group text-center col-xs-6">
+                            <button type="submit" class=" btn btn-primary btnEnregistrer"><span class="fa fa-save"></span> Valider </button>
+                            <span class="col-lg-2"></span>
+                            <button type="reset" class=" btn btn-default"><span class="fa fa-recycle"></span> Annuler </button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>

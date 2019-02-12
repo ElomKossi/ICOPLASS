@@ -1,0 +1,10 @@
+E:\[Cours_Programmation]\Dossier Stage 24Kt\Application\NSIA Assurances Santé\DAL\bin\Debug\DAL.dll.config
+E:\[Cours_Programmation]\Dossier Stage 24Kt\Application\NSIA Assurances Santé\DAL\bin\Debug\DAL.dll
+E:\[Cours_Programmation]\Dossier Stage 24Kt\Application\NSIA Assurances Santé\DAL\bin\Debug\DAL.pdb
+E:\[Cours_Programmation]\Dossier Stage 24Kt\Application\NSIA Assurances Santé\DAL\bin\Debug\EntityFramework.dll
+E:\[Cours_Programmation]\Dossier Stage 24Kt\Application\NSIA Assurances Santé\DAL\bin\Debug\EntityFramework.SqlServer.dll
+E:\[Cours_Programmation]\Dossier Stage 24Kt\Application\NSIA Assurances Santé\DAL\bin\Debug\EntityFramework.xml
+E:\[Cours_Programmation]\Dossier Stage 24Kt\Application\NSIA Assurances Santé\DAL\bin\Debug\EntityFramework.SqlServer.xml
+E:\[Cours_Programmation]\Dossier Stage 24Kt\Application\NSIA Assurances Santé\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+E:\[Cours_Programmation]\Dossier Stage 24Kt\Application\NSIA Assurances Santé\DAL\obj\Debug\DAL.dll
+E:\[Cours_Programmation]\Dossier Stage 24Kt\Application\NSIA Assurances Santé\DAL\obj\Debug\DAL.pdb

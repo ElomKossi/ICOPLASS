@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AssBdModelStoreContainer" CdmEntityContainer="AssBdEntities">
+    <EntitySetMapping Name="Adherent">
+      <EntityTypeMapping TypeName="AssBdModel.Adherent">
+        <MappingFragment StoreEntitySet="Adherent">
+          <ScalarProperty Name="IdAdherent" ColumnName="IdAdherent" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="IdPolice" ColumnName="IdPolice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Affilie">
+      <EntityTypeMapping TypeName="AssBdModel.Affilie">
+        <MappingFragment StoreEntitySet="Affilie">
+          <ScalarProperty Name="IdAffilie" ColumnName="IdAffilie" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="CodeSecret" ColumnName="CodeSecret" />
+          <ScalarProperty Name="MontantRestantPlafon" ColumnName="MontantRestantPlafon" />
+          <ScalarProperty Name="IdAdherent" ColumnName="IdAdherent" />
+          <ScalarProperty Name="MontantPlafond" ColumnName="MontantPlafond" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompteUtilisateur">
+      <EntityTypeMapping TypeName="AssBdModel.CompteUtilisateur">
+        <MappingFragment StoreEntitySet="CompteUtilisateur">
+          <ScalarProperty Name="IdUtilisateur" ColumnName="IdUtilisateur" />
+          <ScalarProperty Name="NomUtilisateur" ColumnName="NomUtilisateur" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="MotDePasse" ColumnName="MotDePasse" />
+          <ScalarProperty Name="DateCreationCompte" ColumnName="DateCreationCompte" />
+          <ScalarProperty Name="Actif" ColumnName="Actif" />
+          <ScalarProperty Name="CodeProfil" ColumnName="CodeProfil" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Connexion">
+      <EntityTypeMapping TypeName="AssBdModel.Connexion">
+        <MappingFragment StoreEntitySet="Connexion">
+          <ScalarProperty Name="IdConnexion" ColumnName="IdConnexion" />
+          <ScalarProperty Name="IdUtilisateur" ColumnName="IdUtilisateur" />
+          <ScalarProperty Name="Debut" ColumnName="Debut" />
+          <ScalarProperty Name="Fin" ColumnName="Fin" />
+          <ScalarProperty Name="adresseIp" ColumnName="adresseIp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Facture">
+      <EntityTypeMapping TypeName="AssBdModel.Facture">
+        <MappingFragment StoreEntitySet="Facture">
+          <ScalarProperty Name="IdFacture" ColumnName="IdFacture" />
+          <ScalarProperty Name="DateFacture" ColumnName="DateFacture" />
+          <ScalarProperty Name="Montant" ColumnName="Montant" />
+          <ScalarProperty Name="RestePlafond" ColumnName="RestePlafond" />
+          <ScalarProperty Name="IdPlafond" ColumnName="IdPlafond" />
+          <ScalarProperty Name="IdPolice" ColumnName="IdPolice" />
+          <ScalarProperty Name="IdAdherent" ColumnName="IdAdherent" />
+          <ScalarProperty Name="IdAffilie" ColumnName="IdAffilie" />
+          <ScalarProperty Name="IdPrestataire" ColumnName="IdPrestataire" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ligne_PolicePlafond">
+      <EntityTypeMapping TypeName="AssBdModel.Ligne_PolicePlafond">
+        <MappingFragment StoreEntitySet="Ligne_PolicePlafond">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdPolice" ColumnName="IdPolice" />
+          <ScalarProperty Name="IdPlafond" ColumnName="IdPlafond" />
+          <ScalarProperty Name="MontantPlafond" ColumnName="MontantPlafond" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Plafond">
+      <EntityTypeMapping TypeName="AssBdModel.Plafond">
+        <MappingFragment StoreEntitySet="Plafond">
+          <ScalarProperty Name="IdPlafond" ColumnName="IdPlafond" />
+          <ScalarProperty Name="LibellePlafond" ColumnName="LibellePlafond" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Police">
+      <EntityTypeMapping TypeName="AssBdModel.Police">
+        <MappingFragment StoreEntitySet="Police">
+          <ScalarProperty Name="IdPolice" ColumnName="IdPolice" />
+          <ScalarProperty Name="LibellePolice" ColumnName="LibellePolice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prestataire">
+      <EntityTypeMapping TypeName="AssBdModel.Prestataire">
+        <MappingFragment StoreEntitySet="Prestataire">
+          <ScalarProperty Name="IdPrestataire" ColumnName="IdPrestataire" />
+          <ScalarProperty Name="NomOuRaisonSociale" ColumnName="NomOuRaisonSociale" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="IdPlafond" ColumnName="IdPlafond" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Profil">
+      <EntityTypeMapping TypeName="AssBdModel.Profil">
+        <MappingFragment StoreEntitySet="Profil">
+          <ScalarProperty Name="CodeProfil" ColumnName="CodeProfil" />
+          <ScalarProperty Name="NomProfil" ColumnName="NomProfil" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="AssBdModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

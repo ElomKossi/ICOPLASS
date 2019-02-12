@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br /><br />
+<br /><br />
+<div class="jumbotron">
+    <div id="alert">
+        <div class="alert alert-success alert-dismissable">
+            Bienvenue dans le module Administration de ICoPlAss<br />
+            Sentez vous libre mais n'oubliez pas vos actions dans cette zone peuvent être faltales.
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Les Prestatires</h2>
+        <p>Dans ce module on peut ajouter ou faire des modification ou supprimer un des prestaires se trouvant dans la base de donnée</p>
+        <p>
+            <a class="btn btn-default btn-lg" href="~/Administration/Prestataires/Index">
+                <i class="fa fa-print fa-4x"><span class="glyphicon glyphicon-th-list" style="font-size : large"></span></i> Ajouter des Prestataires &raquo;
+            </a>
+        </p>
+    </div>
+    <div class="col-md-6">
+        <h2>Les comptes d'utilisateurs</h2>
+        <p>Ce module permet de gérer les utilisateurs (Création, Modification et suppression de compte) et le journal des connexions.</p>
+        <p>
+            <a class="btn btn-default btn-lg" href="~/Administration/CompteUtilisateurs/Index">
+                <i class="fa fa-print fa-4x"><span class="glyphicon glyphicon-user" style="font-size : large"></span></i> Gestion des Utilisateur &raquo;
+            </a>
+        </p>
+    </div>
+    <div class="col-md-5">
+        <h2>Journal des connexions</h2>
+        <p>
+            Le journal de connexion sert à voire tous ceux qui sont connectés et aussi ceux qui sont déconnectés<br />
+            avec la date de début de connexion et de fin s'ils sont déconnectés.
+        </p>
+        <p>
+            <a class="btn btn-default btn-lg" href="~/Administration/CompteUtilisateurs/Index">
+                <i class="fa fa-print fa-4x"><span class="glyphicon glyphicon-calendar" style="font-size : large"></span></i> Journal &raquo;
+            </a>
+        </p>
+    </div>
+    <div class="col-md-7">
+        <h2>Les Etats</h2>
+        <p>
+
+        </p>
+        <p>
+            <a class="btn btn-default btn-lg" href="~/Administration/CompteUtilisateurs/Index">
+                <i class="fa fa-print fa-4x"><span class="glyphicon glyphicon-bookmark" style="font-size : large"></span></i> Les Etats &raquo;
+            </a>
+        </p>
+    </div>
+</div>

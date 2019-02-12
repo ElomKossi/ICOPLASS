@@ -1,0 +1,154 @@
+﻿@model ApplicationMVC.Areas.Listes.Models.ListViewModel
+@using GridMvc.Html
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Module du Personnel de NSIA Assurances Santé</h2>
+<br />
+
+<div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-pills nav-justified" role="tablist">
+        <li role="presentation" class="active"><a href="#Prest" aria-controls="Prest" role="tab" data-toggle="tab">Liste des Prestataires</a></li>
+        <li role="presentation"><a href="#Adher" aria-controls="Adher" role="tab" data-toggle="tab">Liste des Adhérents</a></li>
+        <li role="presentation"><a href="#Affil" aria-controls="Affil" role="tab" data-toggle="tab">Liste des Affiliés</a></li>
+        <li role="presentation"><a href="#Polic" aria-controls="Polic" role="tab" data-toggle="tab">Liste des Polices</a></li>
+        <li role="presentation"><a href="#Factu" aria-controls="Factu" role="tab" data-toggle="tab">Liste des Factures</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane active" id="Prest">
+            <br />
+            @Html.Grid(Model.prest).Columns(col =>
+            {
+                col.Add(p => p.NomOuRaisonSociale)
+                    .Titled("Nom ou Raison Sociale")
+                    .Sortable(true)
+                    .Filterable(true);
+                col.Add(p => p.Telephone)
+                    .Titled("Téléphone");
+                col.Add(p => p.Email)
+                    .Titled("Email");
+                col.Add(p => p.Adresse)
+                    .Titled("Adresse");
+                col.Add(p => p.Plafond.LibellePlafond)
+                    .Titled("Type de prestation");
+            }).WithPaging(8).Sortable(true)
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="Adher">
+            <br />
+            @Html.Grid(Model.adher).Columns(col =>
+            {
+                col.Add(p => p.Nom)
+                    .Titled("Nom")
+                    .Sortable(true)
+                    .Filterable(true);
+                col.Add(p => p.Prenom)
+                    .Titled("Prénom")
+                    .Sortable(true)
+                    .Filterable(true);
+                col.Add(p => p.DateNaissance)
+                    .Titled("Date de naissance");
+                col.Add(p => p.Telephone)
+                    .Titled("Téléphone");
+                col.Add(p => p.Email)
+                    .Titled("Email");
+                col.Add(p => p.Adresse)
+                    .Titled("Adresse");
+                col.Add(p => p.Police.LibellePolice)
+                    .Titled("Nom de la Police");
+            }).WithPaging(8).Sortable(true)
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="Affil">
+            <br />
+            @Html.Grid(Model.affil).Columns(col =>
+            {
+                col.Add(p => p.Nom)
+                    .Titled("Nom")
+                    .Sortable(true)
+                    .Filterable(true);
+                col.Add(p => p.Prenom)
+                    .Titled("Prénom")
+                    .Sortable(true)
+                    .Filterable(true);
+                col.Add(p => p.DateNaissance)
+                    .Titled("Date de naissance");
+                col.Add(p => p.CodeSecret)
+                    .Titled("Code secret");
+                col.Add(p => p.Telephone)
+                    .Titled("Téléphone");
+                col.Add(p => p.Email)
+                    .Titled("Email");
+                col.Add(p => p.Adresse)
+                    .Titled("Adresse");
+                col.Add(p => p.MontantPlafond)
+                    .Titled("Montant restant");
+                col.Add(p => p.Adherent.Nom)
+                    .Titled("Nom d'adhérent");
+                col.Add(p => p.Adherent.Prenom)
+                    .Titled("Prénom d'adhérent");
+                col.Add(p => p.Adherent.Police.LibellePolice)
+                    .Titled("Nom de Police");
+            }).WithPaging(8).Sortable(true)
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="Polic">
+            <br />
+            @Html.Grid(Model.PP).Columns(col =>
+            {
+                col.Add(p => p.Police.LibellePolice)
+                    .Titled("Nom de la Police")
+                    .Sortable(true)
+                    .Filterable(true);
+                col.Add(p => p.Plafond.LibellePlafond)
+                    .Titled("Nom du Plafond")
+                    .Sortable(true)
+                    .Filterable(true);
+                col.Add(p => p.MontantPlafond)
+                    .Titled("Montant");
+            }).WithPaging(10).Sortable(true)
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="Factu">
+            <br />
+            @Html.Grid(Model.factu).Columns(col =>
+            {
+                col.Add(p => p.Affilie.Nom)
+                    .Titled("Nom")
+                    .Sortable(true)
+                    .Filterable(true);
+                col.Add(p => p.Affilie.Prenom)
+                    .Titled("Prénom")
+                    .Sortable(true)
+                    .Filterable(true);
+                col.Add(p => p.Montant)
+                    .Titled("Montant");
+                col.Add(p => p.DateFacture)
+                    .Titled("Date de fracturation");
+                col.Add(p => p.Adherent.Police.LibellePolice)
+                    .Titled("Nom de Police");
+                col.Add(p => p.Affilie.MontantRestantPlafon)
+                    .Titled("Montant restant");
+                col.Add(p => p.Prestataire.NomOuRaisonSociale)
+                    .Titled("Nom du prestataire")
+                    .Filterable(true);
+                col.Add(p => p.Police.LibellePolice)
+                    .Titled("Nom de la police");
+                col.Add(p => p.Adherent.Nom)
+                    .Titled("Nom d'adhérent");
+                col.Add(p => p.Adherent.Prenom)
+                    .Titled("Prénom d'adhérent");
+            }).WithPaging(8).Sortable(true)
+        </div>
+
+    </div>
+
+</div>
+

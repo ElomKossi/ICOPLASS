@@ -1,0 +1,62 @@
+﻿@using ApplicationMVC.Models
+@model ApplicationMVC.Models.UserViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Page de garde</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/particulier.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="center-block">
+                    <div align="center">
+                        <br /><br /><br />
+                        <br /><br /><br />
+                        <img src="~/Content/logo.png" class="img-responsive img-rounded" alt="Logo NSIA Assurances" />
+                        @using (Html.BeginForm("Connexion", "Login", FormMethod.Post, new { @class = "form-signin" }))
+                        {
+                            <div class="form-group">
+                                <label class="sr-only">Identifiant</label>
+                                <input autocomplete="off" class="form-control" type="text" id="login" name="login" placeholder="login" required="required" autofocus="autofocus" />
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="">Mot de Passe</label>
+                                <input id="motdepasse" autocomplete="off" name="motdepasse" class="form-control" placeholder="Mot de Passe" type="password" required="required" />
+                            </div>
+                            if (ViewBag.erreur != null)
+                            {
+                                <div class="alert-danger alert-dismissable">
+
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <span class="alerts-text">@ViewBag.erreur</span>
+                                </div>
+                            }
+                                    <button type="submit" class="btn btn-primary bt-sm"><span class="glyphicon glyphicon-ok-circle"></span>Valider</button>
+                        }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@*@RenderSection("scripts", required: false)*@
+
+</body>
+
+</html>
+
+
+

@@ -1,0 +1,119 @@
+﻿@model ApplicationMVC.Areas.Administration.Models.AllViewModel
+
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Prestataire";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <br /><br />
+    <div class="col-md-offset-2 col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3>Créer un prestataire</h3></div>
+            <div class="panel-body">
+                <div class="col-md-offset-1 col-md-10 col-md-offset-1">
+                    <form class="form-horizontal col-lg-12" action="/Administration/Prestataires/Create" method="post">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @*@Html.HiddenFor(model => model.prestataire)*@
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Nom ou Raison Sociale</label>
+                            <input class="form-control" type="text" name="NomOuRaisonSociale" placeholder="la dénomination du prestataire" required="required" autofocus="autofocus" />
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Email</label>
+                            <input class="form-control" type="email" name="Email" placeholder="Email" required="required" autofocus="autofocus" />
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Téléphone</label>
+                            <input class="form-control" type="tel" name="Telephone" placeholder="Téléphone" required="required" autofocus="autofocus" />
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Adresse</label>
+                            <input class="form-control" type="tel" name="Adresse" placeholder="Adresse" required="required" autofocus="autofocus" />
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Plafond</label>
+                            <select name="IdPlafond" class="form-control">
+                                @{
+                                    foreach (var plaf in Model.plafond)
+                                    {
+                                        <option value="@plaf.IdPlafond">@plaf.LibellePlafond</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+                                <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-play-circle"></span> Ajouter</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br />
+
+<h2>Listes des Prestataires</h2>
+<table class="table table-striped table-responsive table-hover">
+    <tr>
+        <th>
+            @Html.DisplayName("Nom ou Raison Sociale")
+        </th>
+        <th>
+            @Html.DisplayName("Téléphone")
+        </th>
+        <th>
+            @Html.DisplayName("Email")
+        </th>
+        <th>
+            @Html.DisplayName("Adresse")
+        </th>
+        <th>
+            @Html.DisplayName("Type de prestation")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.prestataire)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomOuRaisonSociale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adresse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plafond.LibellePlafond)
+            </td>
+            <td>
+                @Html.ActionLink("Editer", "Edit", new { id = item.IdPrestataire }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdPrestataire }) |
+                @Html.ActionLink("Supprimer", "Delete", new { id = item.IdPrestataire }) 
+            </td>
+        </tr>
+    }
+</table>

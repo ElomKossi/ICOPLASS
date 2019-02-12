@@ -1,0 +1,67 @@
+﻿@*@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>*@
+
+@using System.Diagnostics
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using DAL
+@model dynamic
+@{
+    ViewBag.Title = "IDS||" + ViewBag.Title;
+    AssBdEntities db = new AssBdEntities();
+    HttpCookie aCookie = Request.Cookies["userName"];
+    CompteUtilisateur courant = db.CompteUtilisateur.ToList().Find(p => p.NomUtilisateur == Server.HtmlEncode(aCookie.Value)); ViewBag.Title = "Profil " + Server.HtmlEncode(aCookie.Value);
+    var pi = db.Profil.Single(j => j.CodeProfil == courant.CodeProfil);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div id="page-wrapper" class="col-lg-12">
+    <div class="col-lg-12">
+        <br />
+        <br />
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    <i class="fa fa-3x fa-plus"></i><span class="h3 text-center">Paramètres du comptes</span>
+                </h1>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Parametre", "User", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div class="form-group">
+                        <label for="text" class="col-xs-4 control-label">numéro Utilisateur:</label>
+                        <div class="col-xs-8">
+                            <input autocomplete="off" autofocus="autofocus" class="form-control sui-accordion-disabled" id="idnvo" name="idUtilisateur" placeholder="Pseudo" value="@courant.IdUtilisateur" required type="text" disabled="disabled">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="text" class="col-xs-4 control-label">Identifiant:</label>
+                        <div class="col-xs-8">
+                            <input autocomplete="off" autofocus="autofocus" class="form-control" id="idnvo" name="identifiant" placeholder="Pseudo" value="@courant.NomUtilisateur" required type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Profil:</label>
+                        <div class="col-xs-8">
+                            <input value="@pi.NomProfil" class="form-control sui-accordion-disabled">
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <button type="submit" class=" btn btn-primary"><span class="glyphicon glyphicon-save"></span> Valider </button>
+                        <button type="reset" class=" btn btn-default"><span class="glyphicon glyphicon-remove"></span> Annuler </button>
+                    </div>
+
+                }
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-12">
+        @RenderPage("Motdepasse.cshtml");
+    </div>
+
+
+</div>

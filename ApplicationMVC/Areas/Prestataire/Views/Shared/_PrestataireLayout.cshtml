@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("SANTE PLUS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse pull-right">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("Administration", "Index", "Admin", new { area = "Administration" }, null)</li>
+                    <li>@Html.ActionLink("Presrtataire", "Index", "Index", new { area = "Prestataire" }, null)</li>
+                    <li>@Html.ActionLink("Personnel NSIA Assurance Vie", "Index", "Index", new { area = "NSIA" }, null)</li>
+
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+
+                    <li><a href="~/Areas/Prestataire/Views/Facturation/ValiderClient.cshtml" data-toggle="modal" data-target="#myModal"><svg class="glyph stroked home"><use xlink:href="#stroked-home" /></svg>Créer une facture</a></li>
+                    <li><a href="~/Home/About"><svg class="glyph stroked star"><use xlink:href="#stroked-star" /></svg>Liste des factures</a></li>
+                    <li><a href="~/Home/Contact"><svg class="glyph stroked tablet"><use xlink:href="#stroked-tablet-1" /></svg>Les Etats</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li><a href="Categories/Categories/Index"><svg class="glyph stroked tablet"><use xlink:href="#stroked-tablet-1" /></svg>Suggession</a></li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    <!-- Modal -->
+@using (Html.BeginForm("ValideCLt", "ValideCLt", FormMethod.Post))
+    {
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content col-lg-12">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Authentifier un client</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" class="form-horizontal col-lg-10">
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-lg-5 control-label sr-">Code secret de l'assurée : </label>
+                                <div class="col-lg-10 col-lg-offset-2">
+                                    <input type="text" class="form-control" id="text" placeholder="Code secret de l'assurée" name="CodeSecret" autofocus required>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Valider" class="btn btn-info" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

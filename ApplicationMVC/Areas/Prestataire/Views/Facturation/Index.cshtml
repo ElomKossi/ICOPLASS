@@ -1,0 +1,46 @@
+﻿@model ApplicationMVC.Areas.Prestataire.Models.ViewModelAllClass
+
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Liste des factures";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    <span class="glyphicon glyphicon-plus"></span> Créer une nouvelle facture
+</button>
+
+<hr />
+
+<h2>Les factures des assurés</h2>
+
+@Html.Grid(Model.facture.Where(f => f.IdPrestataire == Model.prest.IdPrestataire)).Columns(columns =>
+{
+    columns.Add(p => p.Affilie.Nom)
+           .Titled("Nom")
+           .Filterable(true);
+    
+    columns.Add(p => p.Affilie.Prenom)
+           .Titled("Prénom");
+    
+    columns.Add(p => p.Police.LibellePolice)
+           .Titled("Police")
+           .Filterable(true);
+    
+    columns.Add(p => p.Plafond.LibellePlafond)
+           .Titled("Plafond")
+           .Filterable(true);
+    
+    columns.Add(p => p.DateFacture)
+           .Titled("Date de facturation")
+           .Filterable(true);
+    
+    columns.Add(p => p.Montant);
+    
+}).EmptyText("Il n'y a pas de facture pour le moment").WithPaging(4).Filterable(true)
+
+

@@ -1,0 +1,59 @@
+﻿@model DAL.Prestataire
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";    
+}
+
+<h2>Details sur le Prestataire : @Html.DisplayFor(model => model.NomOuRaisonSociale)</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Nom ou Raison Sociale")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomOuRaisonSociale)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Téléphone")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telephone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adresse)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Type de Prestation")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plafond.LibellePlafond)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editer", "Edit", new { id = Model.IdPrestataire }) |
+    @Html.ActionLink("Retour", "Index")
+</p>

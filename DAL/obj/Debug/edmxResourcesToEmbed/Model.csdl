@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AssBdModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Adherent">
+    <Key>
+      <PropertyRef Name="IdAdherent" />
+    </Key>
+    <Property Name="IdAdherent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DateNaissance" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Adresse" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdPolice" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Police" Relationship="Self.FK_Adherent_Police" FromRole="Adherent" ToRole="Police" />
+    <NavigationProperty Name="Affilie" Relationship="Self.FK_Affilie_Adherent" FromRole="Adherent" ToRole="Affilie" />
+    <NavigationProperty Name="Facture" Relationship="Self.FK_Facture_Adherent" FromRole="Adherent" ToRole="Facture" />
+  </EntityType>
+  <EntityType Name="Affilie">
+    <Key>
+      <PropertyRef Name="IdAffilie" />
+    </Key>
+    <Property Name="IdAffilie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DateNaissance" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Adresse" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CodeSecret" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MontantRestantPlafon" Type="Double" Nullable="false" />
+    <Property Name="IdAdherent" Type="Int32" Nullable="false" />
+    <Property Name="MontantPlafond" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Adherent" Relationship="Self.FK_Affilie_Adherent" FromRole="Affilie" ToRole="Adherent" />
+    <NavigationProperty Name="Facture" Relationship="Self.FK_Facture_Affilie" FromRole="Affilie" ToRole="Facture" />
+  </EntityType>
+  <EntityType Name="CompteUtilisateur">
+    <Key>
+      <PropertyRef Name="IdUtilisateur" />
+    </Key>
+    <Property Name="IdUtilisateur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NomUtilisateur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MotDePasse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DateCreationCompte" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Actif" Type="Boolean" Nullable="false" />
+    <Property Name="CodeProfil" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Profil" Relationship="Self.FK_CompteUtilisateur_Profil" FromRole="CompteUtilisateur" ToRole="Profil" />
+    <NavigationProperty Name="Connexion" Relationship="Self.FK_Connexion_CompteUtilisateur" FromRole="CompteUtilisateur" ToRole="Connexion" />
+  </EntityType>
+  <EntityType Name="Connexion">
+    <Key>
+      <PropertyRef Name="IdConnexion" />
+    </Key>
+    <Property Name="IdConnexion" Type="Int32" Nullable="false" />
+    <Property Name="IdUtilisateur" Type="Int32" Nullable="false" />
+    <Property Name="Debut" Type="DateTime" Precision="3" />
+    <Property Name="Fin" Type="DateTime" Precision="3" />
+    <Property Name="adresseIp" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="CompteUtilisateur" Relationship="Self.FK_Connexion_CompteUtilisateur" FromRole="Connexion" ToRole="CompteUtilisateur" />
+  </EntityType>
+  <EntityType Name="Facture">
+    <Key>
+      <PropertyRef Name="IdFacture" />
+    </Key>
+    <Property Name="IdFacture" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateFacture" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Montant" Type="Double" Nullable="false" />
+    <Property Name="RestePlafond" Type="Double" Nullable="false" />
+    <Property Name="IdPlafond" Type="Int32" Nullable="false" />
+    <Property Name="IdPolice" Type="Int32" Nullable="false" />
+    <Property Name="IdAdherent" Type="Int32" Nullable="false" />
+    <Property Name="IdAffilie" Type="Int32" Nullable="false" />
+    <Property Name="IdPrestataire" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Adherent" Relationship="Self.FK_Facture_Adherent" FromRole="Facture" ToRole="Adherent" />
+    <NavigationProperty Name="Affilie" Relationship="Self.FK_Facture_Affilie" FromRole="Facture" ToRole="Affilie" />
+    <NavigationProperty Name="Plafond" Relationship="Self.FK_Facture_Plafond" FromRole="Facture" ToRole="Plafond" />
+    <NavigationProperty Name="Police" Relationship="Self.FK_Facture_Police" FromRole="Facture" ToRole="Police" />
+    <NavigationProperty Name="Prestataire" Relationship="Self.FK_Facture_Prestataire" FromRole="Facture" ToRole="Prestataire" />
+  </EntityType>
+  <EntityType Name="Ligne_PolicePlafond">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdPolice" Type="Int32" Nullable="false" />
+    <Property Name="IdPlafond" Type="Int32" Nullable="false" />
+    <Property Name="MontantPlafond" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Plafond" Relationship="Self.FK_Ligne_PolicePlafond_Plafond" FromRole="Ligne_PolicePlafond" ToRole="Plafond" />
+    <NavigationProperty Name="Police" Relationship="Self.FK_Ligne_PolicePlafond_Police" FromRole="Ligne_PolicePlafond" ToRole="Police" />
+  </EntityType>
+  <EntityType Name="Plafond">
+    <Key>
+      <PropertyRef Name="IdPlafond" />
+    </Key>
+    <Property Name="IdPlafond" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LibellePlafond" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Facture" Relationship="Self.FK_Facture_Plafond" FromRole="Plafond" ToRole="Facture" />
+    <NavigationProperty Name="Ligne_PolicePlafond" Relationship="Self.FK_Ligne_PolicePlafond_Plafond" FromRole="Plafond" ToRole="Ligne_PolicePlafond" />
+    <NavigationProperty Name="Prestataire" Relationship="Self.FK_Prestataire_Plafond" FromRole="Plafond" ToRole="Prestataire" />
+  </EntityType>
+  <EntityType Name="Police">
+    <Key>
+      <PropertyRef Name="IdPolice" />
+    </Key>
+    <Property Name="IdPolice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LibellePolice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Adherent" Relationship="Self.FK_Adherent_Police" FromRole="Police" ToRole="Adherent" />
+    <NavigationProperty Name="Facture" Relationship="Self.FK_Facture_Police" FromRole="Police" ToRole="Facture" />
+    <NavigationProperty Name="Ligne_PolicePlafond" Relationship="Self.FK_Ligne_PolicePlafond_Police" FromRole="Police" ToRole="Ligne_PolicePlafond" />
+  </EntityType>
+  <EntityType Name="Prestataire">
+    <Key>
+      <PropertyRef Name="IdPrestataire" />
+    </Key>
+    <Property Name="IdPrestataire" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NomOuRaisonSociale" Type="String" MaxLength="254" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Adresse" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdPlafond" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Facture" Relationship="Self.FK_Facture_Prestataire" FromRole="Prestataire" ToRole="Facture" />
+    <NavigationProperty Name="Plafond" Relationship="Self.FK_Prestataire_Plafond" FromRole="Prestataire" ToRole="Plafond" />
+  </EntityType>
+  <EntityType Name="Profil">
+    <Key>
+      <PropertyRef Name="CodeProfil" />
+    </Key>
+    <Property Name="CodeProfil" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NomProfil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CompteUtilisateur" Relationship="Self.FK_CompteUtilisateur_Profil" FromRole="Profil" ToRole="CompteUtilisateur" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Adherent_Police">
+    <End Role="Police" Type="Self.Police" Multiplicity="1" />
+    <End Role="Adherent" Type="Self.Adherent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Police">
+        <PropertyRef Name="IdPolice" />
+      </Principal>
+      <Dependent Role="Adherent">
+        <PropertyRef Name="IdPolice" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Affilie_Adherent">
+    <End Role="Adherent" Type="Self.Adherent" Multiplicity="1" />
+    <End Role="Affilie" Type="Self.Affilie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adherent">
+        <PropertyRef Name="IdAdherent" />
+      </Principal>
+      <Dependent Role="Affilie">
+        <PropertyRef Name="IdAdherent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Facture_Adherent">
+    <End Role="Adherent" Type="Self.Adherent" Multiplicity="1" />
+    <End Role="Facture" Type="Self.Facture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adherent">
+        <PropertyRef Name="IdAdherent" />
+      </Principal>
+      <Dependent Role="Facture">
+        <PropertyRef Name="IdAdherent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Facture_Affilie">
+    <End Role="Affilie" Type="Self.Affilie" Multiplicity="1" />
+    <End Role="Facture" Type="Self.Facture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Affilie">
+        <PropertyRef Name="IdAffilie" />
+      </Principal>
+      <Dependent Role="Facture">
+        <PropertyRef Name="IdAffilie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompteUtilisateur_Profil">
+    <End Role="Profil" Type="Self.Profil" Multiplicity="1" />
+    <End Role="CompteUtilisateur" Type="Self.CompteUtilisateur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profil">
+        <PropertyRef Name="CodeProfil" />
+      </Principal>
+      <Dependent Role="CompteUtilisateur">
+        <PropertyRef Name="CodeProfil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Connexion_CompteUtilisateur">
+    <End Role="CompteUtilisateur" Type="Self.CompteUtilisateur" Multiplicity="1" />
+    <End Role="Connexion" Type="Self.Connexion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CompteUtilisateur">
+        <PropertyRef Name="IdUtilisateur" />
+      </Principal>
+      <Dependent Role="Connexion">
+        <PropertyRef Name="IdUtilisateur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Facture_Plafond">
+    <End Role="Plafond" Type="Self.Plafond" Multiplicity="1" />
+    <End Role="Facture" Type="Self.Facture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plafond">
+        <PropertyRef Name="IdPlafond" />
+      </Principal>
+      <Dependent Role="Facture">
+        <PropertyRef Name="IdPlafond" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Facture_Police">
+    <End Role="Police" Type="Self.Police" Multiplicity="1" />
+    <End Role="Facture" Type="Self.Facture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Police">
+        <PropertyRef Name="IdPolice" />
+      </Principal>
+      <Dependent Role="Facture">
+        <PropertyRef Name="IdPolice" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Facture_Prestataire">
+    <End Role="Prestataire" Type="Self.Prestataire" Multiplicity="1" />
+    <End Role="Facture" Type="Self.Facture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prestataire">
+        <PropertyRef Name="IdPrestataire" />
+      </Principal>
+      <Dependent Role="Facture">
+        <PropertyRef Name="IdPrestataire" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ligne_PolicePlafond_Plafond">
+    <End Role="Plafond" Type="Self.Plafond" Multiplicity="1" />
+    <End Role="Ligne_PolicePlafond" Type="Self.Ligne_PolicePlafond" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plafond">
+        <PropertyRef Name="IdPlafond" />
+      </Principal>
+      <Dependent Role="Ligne_PolicePlafond">
+        <PropertyRef Name="IdPlafond" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ligne_PolicePlafond_Police">
+    <End Role="Police" Type="Self.Police" Multiplicity="1" />
+    <End Role="Ligne_PolicePlafond" Type="Self.Ligne_PolicePlafond" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Police">
+        <PropertyRef Name="IdPolice" />
+      </Principal>
+      <Dependent Role="Ligne_PolicePlafond">
+        <PropertyRef Name="IdPolice" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Prestataire_Plafond">
+    <End Role="Plafond" Type="Self.Plafond" Multiplicity="1" />
+    <End Role="Prestataire" Type="Self.Prestataire" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Plafond">
+        <PropertyRef Name="IdPlafond" />
+      </Principal>
+      <Dependent Role="Prestataire">
+        <PropertyRef Name="IdPlafond" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AssBdEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Adherent" EntityType="Self.Adherent" />
+    <EntitySet Name="Affilie" EntityType="Self.Affilie" />
+    <EntitySet Name="CompteUtilisateur" EntityType="Self.CompteUtilisateur" />
+    <EntitySet Name="Connexion" EntityType="Self.Connexion" />
+    <EntitySet Name="Facture" EntityType="Self.Facture" />
+    <EntitySet Name="Ligne_PolicePlafond" EntityType="Self.Ligne_PolicePlafond" />
+    <EntitySet Name="Plafond" EntityType="Self.Plafond" />
+    <EntitySet Name="Police" EntityType="Self.Police" />
+    <EntitySet Name="Prestataire" EntityType="Self.Prestataire" />
+    <EntitySet Name="Profil" EntityType="Self.Profil" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_Adherent_Police" Association="Self.FK_Adherent_Police">
+      <End Role="Police" EntitySet="Police" />
+      <End Role="Adherent" EntitySet="Adherent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Affilie_Adherent" Association="Self.FK_Affilie_Adherent">
+      <End Role="Adherent" EntitySet="Adherent" />
+      <End Role="Affilie" EntitySet="Affilie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Facture_Adherent" Association="Self.FK_Facture_Adherent">
+      <End Role="Adherent" EntitySet="Adherent" />
+      <End Role="Facture" EntitySet="Facture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Facture_Affilie" Association="Self.FK_Facture_Affilie">
+      <End Role="Affilie" EntitySet="Affilie" />
+      <End Role="Facture" EntitySet="Facture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompteUtilisateur_Profil" Association="Self.FK_CompteUtilisateur_Profil">
+      <End Role="Profil" EntitySet="Profil" />
+      <End Role="CompteUtilisateur" EntitySet="CompteUtilisateur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Connexion_CompteUtilisateur" Association="Self.FK_Connexion_CompteUtilisateur">
+      <End Role="CompteUtilisateur" EntitySet="CompteUtilisateur" />
+      <End Role="Connexion" EntitySet="Connexion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Facture_Plafond" Association="Self.FK_Facture_Plafond">
+      <End Role="Plafond" EntitySet="Plafond" />
+      <End Role="Facture" EntitySet="Facture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Facture_Police" Association="Self.FK_Facture_Police">
+      <End Role="Police" EntitySet="Police" />
+      <End Role="Facture" EntitySet="Facture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Facture_Prestataire" Association="Self.FK_Facture_Prestataire">
+      <End Role="Prestataire" EntitySet="Prestataire" />
+      <End Role="Facture" EntitySet="Facture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ligne_PolicePlafond_Plafond" Association="Self.FK_Ligne_PolicePlafond_Plafond">
+      <End Role="Plafond" EntitySet="Plafond" />
+      <End Role="Ligne_PolicePlafond" EntitySet="Ligne_PolicePlafond" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ligne_PolicePlafond_Police" Association="Self.FK_Ligne_PolicePlafond_Police">
+      <End Role="Police" EntitySet="Police" />
+      <End Role="Ligne_PolicePlafond" EntitySet="Ligne_PolicePlafond" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Prestataire_Plafond" Association="Self.FK_Prestataire_Plafond">
+      <End Role="Plafond" EntitySet="Plafond" />
+      <End Role="Prestataire" EntitySet="Prestataire" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,149 @@
+﻿@model ApplicationMVC.Areas.Administration.Models.AllViewModel
+
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Compte d'utilisateurs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <br /><br />
+    <div class="col-md-offset-2 col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3>Créer un utilisateur</h3></div>
+            <div class="panel-body">
+                <div class="col-md-offset-1 col-md-10 col-md-offset-1">
+                    <form class="form-horizontal col-lg-12" action="/Administration/CompteUtilisateurs/Create" method="post">
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @*@Html.HiddenFor(model => model.prestataire)*@
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Nom </label>
+                            <input class="form-control" type="text" name="NomUtilisateur" placeholder="Nom d'Utilisateur" required="required" autofocus="autofocus" />
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Login</label>
+                            <input class="form-control" type="text" name="Login" placeholder="Login" required="required" autofocus="autofocus" />
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Mot de passe</label>
+                            <input class="form-control" type="text" name="MotDePasse" placeholder="Mot de passe" required="required" autofocus="autofocus" />
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Date</label>
+                            <input class="form-control" type="date" name="DateCreationCompte" placeholder="Date de création du compte" required="required" autofocus="autofocus" />
+                            @*<input type='text' class="form-control" name="DateCreationCompte" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>*@
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Actif</label>
+                            <div class="checkbox col-md-8">
+                                <input class="check-box" required id="Actif" name="Actif" type="checkbox" value="true" />
+                                <input name="Actif" type="hidden" value="false" />   
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Type de profil</label>
+                            <select name="CodeProfil" class="form-control">
+                                @{
+                                    foreach (var prof in Model.profil)
+                                    {
+                                        <option value="@prof.CodeProfil">@prof.NomProfil</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+                                <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-play-circle"></span> Ajouter</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br />
+
+<h2>Listes des Utilisateurs</h2>
+<table class="table table-striped table-responsive table-hover">
+    <tr>
+        <th>
+            @Html.DisplayName("Nom d'utilisateur")
+        </th>
+        <th>
+            @Html.DisplayName("Login")
+        </th>
+        <th>
+            @Html.DisplayName("Mot de passe")
+        </th>
+        <th>
+            @Html.DisplayName("Date de création")
+        </th>
+        <th>
+            @Html.DisplayName("Actif")
+        </th>
+        <th>
+            @Html.DisplayName("Type de profil")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.user)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomUtilisateur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MotDePasse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreationCompte)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Actif)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Profil.NomProfil)
+            </td>
+            <td>
+                @Html.ActionLink("Editer", "Edit", new { id = item.IdUtilisateur }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdUtilisateur }) |
+                @Html.ActionLink("Supprimer", "Delete", new { id = item.IdUtilisateur })
+            </td>
+        </tr>
+    }
+</table>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker5').datetimepicker({
+            defaultDate: "11/1/2013",
+            disabledDates: [
+                moment("12/25/2013"),
+                new Date(2013, 11 - 1, 21),
+                "11/22/2013 00:53"
+            ]
+        });
+    });
+</script>
